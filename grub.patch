@@ -1,0 +1,27 @@
+--- tmp/grub	2015-02-06 09:59:10.754307873 +0800
++++ tmp/grub	2018-04-20 16:11:48.599534848 +0800
+@@ -4,12 +4,10 @@
+ #   info -f grub -n 'Simple configuration'
+ 
+ GRUB_DEFAULT=0
+-#GRUB_HIDDEN_TIMEOUT=0
+-GRUB_HIDDEN_TIMEOUT_QUIET=true
+ GRUB_TIMEOUT=10
+ GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+-GRUB_CMDLINE_LINUX=""
++GRUB_CMDLINE_LINUX_DEFAULT=""
++GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8"
+ 
+ # Uncomment to enable BadRAM filtering, modify to suit your needs
+ # This works with Linux (no patch required) and with any kernel that obtains
+@@ -17,7 +15,8 @@
+ #GRUB_BADRAM="0x01234567,0xfefefefe,0x89abcdef,0xefefefef"
+ 
+ # Uncomment to disable graphical terminal (grub-pc only)
+-#GRUB_TERMINAL=console
++GRUB_TERMINAL="console serial"
++GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"
+ 
+ # The resolution used on graphical terminal
+ # note that you can use only modes which your graphic card supports via VBE
